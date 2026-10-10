@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: expense
+  labels:
+    app: frontend
+    tier: frontend
+    purpose: expense
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+       app: frontend
+       tier: frontend
+       purpose: expense
+  template:
+    metadata:
+      labels:
+         app: frontend
+         tier: frontend
+         purpose: expense
+    spec:
+      containers:
+      - name: nginx
+        image: riyacham/frontend:latest
+        ports:
+        - containerPort: 8080
+
+        
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend
+  namespace: expense
+spec:
+  type: LoadBalancer
+  selector: # labels are used as selectors
+     app: backend
+     tier: backend
+     purpose: expense
+  ports:
+  - protocol: TCP
+    port: 80 #service port
+    targetPort: 8080
+  
