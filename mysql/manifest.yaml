@@ -16,7 +16,7 @@ spec:
     tier: db
   ports: 
   - protocol: TCP
-    ports: 3306 #serviceport
+    port: 3306 #serviceport
     tragetport: 330d
 ---
 apiVersion: apps/v1
