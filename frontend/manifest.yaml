@@ -88,7 +88,7 @@ spec:
     spec:
       volumes:
       - name: nginx
-        ConfigMap:
+        configMap:
           name: nginx
           items:
             - key: nginx.conf
@@ -114,8 +114,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector: # labels are used as selectors
-     app: backend
-     tier: backend
+     app: frontend
+     tier: frontend
      purpose: expense
   ports:
   - protocol: TCP
