@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: expense
+  labels:
+    app: nginx
+    purpose: expense
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+       app: nginx
+       purpose: expense
+  template:
+    metadata:
+      labels:
+         app: nginx
+         purpose: expense
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:{{ .Values.deployment.imageVersion }}
+        ports:
+        - containerPort: 80
+        
